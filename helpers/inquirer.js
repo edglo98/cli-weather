@@ -66,16 +66,22 @@ export const getInputTask = async (message) => {
   return taskInput
 }
 
-export const listOfTasksCanDelete = async (tasks = []) => {
+export const listOfOptions = async (options = []) => {
   const listOfTasksCanDeleteProps = [
     {
       type: 'list',
       name: 'id',
-      message: 'Borrar',
-      choices: tasks.map((task, i) => ({
-        value: task.id,
-        name: `${i + 1} ${task.description}`
-      }))
+      message: 'Elige una opción:',
+      choices: [
+        ...options.map((option, i) => ({
+          value: option.id,
+          name: `${i + 1}. ${option.name}`.white
+        })),
+        {
+          value: 0,
+          name: '0. Cancelar'.red
+        }
+      ]
     }
   ]
 
